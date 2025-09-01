@@ -184,6 +184,34 @@ The RSS feed is automatically generated at `/feed.xml` and includes:
 - Episode enclosures pointing to bunny.net MP3 files
 - Proper episode numbering and descriptions
 
+### TODO: Enhanced RSS Feed Optimizations
+
+**High Impact Enhancements:**
+- [ ] `<podcast:transcript>` - Link existing transcript files directly in RSS
+- [ ] `<podcast:person>` - Detailed host/guest information with roles
+- [ ] Enhanced episode descriptions with HTML formatting support
+- [ ] `<podcast:funding>` - Donation/support links (if monetization planned)
+
+**Medium Impact Enhancements:**
+- [ ] `<podcast:chapters>` - Chapter markers from transcript timestamps
+- [ ] Season/series organization with `<podcast:season>` tags
+- [ ] Individual episode artwork support with episode-specific images
+- [ ] `<podcast:medium>` - Content type specification (podcast vs audiobook)
+
+**Low Priority Enhancements:**
+- [ ] `<podcast:value>` - Value4Value/Bitcoin support integration
+- [ ] `<podcast:location>` - Geographic data for location-based discovery
+- [ ] Advanced content ratings and advisory tags
+- [ ] `<podcast:complete>` - Mark podcast completion status
+- [ ] Episode-level blocking controls with `<itunes:block>`
+
+**Current RSS Strengths (Already Implemented):**
+- ✅ iTunes namespace with comprehensive metadata
+- ✅ Podcast Index namespace foundation
+- ✅ Apple Podcasts verification tags
+- ✅ Proper RSS 2.0 structure with enclosures
+- ✅ Dublin Core metadata integration
+
 ## 🛠️ Development
 
 ### Local Development
