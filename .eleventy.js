@@ -44,7 +44,10 @@ module.exports = function(eleventyConfig) {
         if (!transcriptPath) return '';
         
         try {
-            const transcriptContent = fs.readFileSync(transcriptPath, 'utf8');
+            // Resolve path from project root
+            const path = require('path');
+            const fullPath = path.resolve(transcriptPath);
+            const transcriptContent = fs.readFileSync(fullPath, 'utf8');
             const lines = transcriptContent.split('\n');
             const speakers = {
                 'RapidRaven880': 'speaker-rapidraven',
