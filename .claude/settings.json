@@ -1,0 +1,13 @@
+{
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "defaultMode": "plan",
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "Bash(timeout:*)",
+      "Bash(dig:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
