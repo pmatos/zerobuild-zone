@@ -1,11 +1,11 @@
 {
   "title": "Zero Build Zone",
   "description": "A podcast exploring software development practices, build systems, and developer productivity.",
-  "category": "Technology",
-  "author": "Paulo Matos",
+  "category": "Games",
+  "author": "RapidRaven880",
   "owner": {
-    "name": "Paulo Matos",
-    "email": "pmatos@igalia.com"
+    "name": "RapidRaven880", 
+    "email": "rapidraven880@zerobuild.zone"
   },
   "feedPath": "https://zerobuild.zone/feed.xml",
   "episode": {

@@ -9,7 +9,7 @@
     "build": "rm -rf _site/* && ./node_modules/.bin/eleventy"
   },
   "keywords": ["podcast", "11ty", "static-site", "zero-build-zone"],
-  "author": "Paulo Matos <pmatos@igalia.com>",
+  "author": "RapidRaven880 <rapidraven880@zerobuild.zone>",
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.1",
