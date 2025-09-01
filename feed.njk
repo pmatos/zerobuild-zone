@@ -1,5 +1,5 @@
 ---
-permalink: "/feed.xml"
+permalink: "/feed.rss"
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" 
@@ -12,7 +12,7 @@ permalink: "/feed.xml"
     <generator>Eleventy</generator>
     <title>{{ podcast.title }}</title>
     <description>{{ podcast.description }}</description>
-    <copyright>&copy; 2025 {{ podcast.author }}</copyright>
+    <copyright>© 2025 {{ podcast.author }}</copyright>
     <language>{{ podcast.language or 'en' }}</language>
     <pubDate>{{ collections.episodes | collectionLastUpdatedDate }}</pubDate>
     <lastBuildDate>{{ collections.episodes | collectionLastUpdatedDate }}</lastBuildDate>

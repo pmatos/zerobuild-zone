@@ -7,7 +7,7 @@
     "name": "RapidRaven880", 
     "email": "rapidraven880@zerobuild.zone"
   },
-  "feedPath": "https://zerobuild.zone/feed.xml",
+  "feedPath": "https://zerobuild.zone/feed.rss",
   "episode": {
     "defaultDescription": "The latest episode of Zero Build Zone."
   },
