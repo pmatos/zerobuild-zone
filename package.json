@@ -18,7 +18,7 @@
     "node-fetch": "^3.3.0",
     "node-id3": "^0.2.5",
     "rfc822-date": "^0.0.3",
-    "turndown": "^7.1.1",
+    "turndown": "^7.2.1",
     "uuid": "^9.0.0",
     "xml2json": "^0.12.0"
   },
