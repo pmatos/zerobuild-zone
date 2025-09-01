@@ -10,11 +10,5 @@
         "key": "spotify",
         "color": "#1db954",
         "link": "https://open.spotify.com/show/0FeiXvpvohjxcl2NGdxYIO?si=5b1d9af201c64c61"
-    },
-    {
-        "name": "RSS",
-        "key": "rss",
-        "color": "#F29637",
-        "link": "/feed.xml"
     }
 ]
