@@ -138,7 +138,11 @@ Then link to it from your episode:
 │   ├── base.njk         # Base template
 │   ├── episode.njk      # Individual episode template
 │   └── embed.njk        # Embed player template
-├── assets/              # CSS, images, fonts
+├── assets/
+│   ├── css/             # Stylesheets
+│   ├── img/             # Images and logos
+│   │   └── zero-build-zone-logo.svg  # Main podcast logo
+│   └── favicon.ico      # Site icon
 ├── episodes/            # Episode markdown files
 ├── transcripts/         # Optional transcript files
 ├── .eleventy.js         # Eleventy configuration
@@ -146,6 +150,16 @@ Then link to it from your episode:
 ├── index.njk            # Homepage
 └── episodes.njk         # Episode listing page
 ```
+
+## 🎨 Logo and Artwork
+
+The podcast logo is located at `assets/img/zero-build-zone-logo.svg`. 
+
+**Note for RSS Feed Compatibility:** Some podcast platforms prefer PNG/JPG formats. If needed, create PNG versions:
+- `assets/img/zero-build-zone-logo-large.png` (1400x1400px minimum for iTunes)
+- `assets/img/zero-build-zone-logo-small.png` (300x300px for embeds)
+
+Then update `_data/podcast.json` to reference the PNG files if RSS compatibility issues arise.
 
 ## ⚙️ Configuration
 

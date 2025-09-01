@@ -11,8 +11,8 @@
   "episode": {
     "defaultDescription": "The latest episode of Zero Build Zone."
   },
-  "image": "https://zerobuild.zone/assets/cover.png",
-  "imageEmbed": "https://zerobuild.zone/assets/cover-small.png",
+  "image": "https://zerobuild.zone/assets/img/zero-build-zone-logo.png",
+  "imageEmbed": "https://zerobuild.zone/assets/img/zero-build-zone-logo-small.png",
   "url": "https://zerobuild.zone",
   "keywords": "software development, build systems, developer productivity, programming"
 }
