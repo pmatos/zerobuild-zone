@@ -7,16 +7,39 @@ layout: base
 
 {%- for episode in episodeList %}
     <div class="container">
-        <h2>{{ episode.data.title }}</h2>
+        <h2><a href="{{ episode.url }}">{{ episode.data.title }}</a></h2>
         <p class="date">{{ episode.data.published | dateForEpisode }} / {{ episode.data.duration }}</p>
         {% if loop.index === 1 %}
             {{ episode.templateContent | safe }}
         {% else %}
             <p>{{ episode.data.summary }}</p>
         {% endif %}
+
+        {% if episode.data.transcriptPath %}
+        <div class="transcript-section">
+            <button class="transcript-toggle" onclick="toggleTranscript({{ loop.index }})">Show Transcript</button>
+            <div class="transcript-container" id="transcript-container-{{ loop.index }}" style="display: none;">
+                {{ episode.data.transcriptPath | processTranscript | safe }}
+            </div>
+        </div>
+        {% endif %}
     </div>
 {% endfor %}
 
+<script>
+    function toggleTranscript(episodeIndex) {
+        const container = document.getElementById('transcript-container-' + episodeIndex);
+        const button = document.querySelector('.transcript-toggle[onclick="toggleTranscript(' + episodeIndex + ')"]');
+        
+        if (container.style.display === 'none') {
+            container.style.display = 'block';
+            button.textContent = 'Hide Transcript';
+        } else {
+            container.style.display = 'none';
+            button.textContent = 'Show Transcript';
+        }
+    }
+</script>
 
 <div class="pagination">
     <div>Newer Episodes</div>
