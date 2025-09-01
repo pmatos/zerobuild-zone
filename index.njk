@@ -7,7 +7,7 @@ layout: base
 
 {%- for episode in episodeList %}
     <div class="container">
-        <h2><a href="/{{ episode.data.episodeNumber }}">{{ episode.data.title }}</a></h2>
+        <h2>{{ episode.data.title }}</h2>
         <p class="date">{{ episode.data.published | dateForEpisode }} / {{ episode.data.duration }}</p>
         {% if loop.index === 1 %}
             {{ episode.templateContent | safe }}

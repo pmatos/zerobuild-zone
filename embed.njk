@@ -13,7 +13,7 @@ layout: embed
             <img src="{{ podcast.imageEmbed }}" alt="{{ episode.data.title }}">
         </div>
         <div>
-            <h2><a href="/{{ episode.data.episodeNumber }}">{{ episode.data.title }}</a></h2>
+            <h2>{{ episode.data.title }}</h2>
             <p class="date"><strong><a href="/">{{ podcast.title }}</strong></a> &bull; {{ episode.data.published | dateForEpisode }}</p>
         </div>
     </div>
