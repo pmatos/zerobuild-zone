@@ -24,7 +24,7 @@
     "node-id3": "^0.2.5",
     "rfc822-date": "^0.0.3",
     "turndown": "^7.1.1",
-    "uuid": "^9.0.0",
+    "uuid": "^11.1.0",
     "xml2json": "^0.7.1"
   },
   "dependencies": {
