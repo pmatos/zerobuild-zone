@@ -13,12 +13,25 @@ Visit `http://localhost:8080` to see your site.
 
 ## 📦 Deployment
 
-The site automatically deploys to GitHub Pages when you push to the `main` branch.
+The site automatically deploys to Netlify when you push to the `main` branch.
 
 ### Automatic Deployment
-1. Push your changes to the `main` branch
-2. GitHub Actions will automatically build and deploy the site
-3. Your site will be available at https://zerobuild.zone
+1. Connect your GitHub repository to Netlify
+2. Set build command: `npm run build`
+3. Set publish directory: `_site`
+4. Push your changes to the `main` branch
+5. Netlify will automatically build and deploy the site
+6. Your site will be available at https://zerobuild.zone
+
+### Netlify Setup
+1. Go to [Netlify](https://netlify.com) and connect your GitHub account
+2. Click "New site from Git" and select your `zerobuild-zone` repository
+3. Netlify will auto-detect the settings from `netlify.toml`:
+   - Build command: `npm run build`
+   - Publish directory: `_site`
+   - Node version: 20
+4. Add your custom domain `zerobuild.zone` in Netlify's domain settings
+5. Netlify will handle SSL certificates automatically
 
 ### Manual Deployment
 ```bash
