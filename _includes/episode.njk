@@ -8,4 +8,28 @@ layout: base
 
     {{ content | safe }}
 
+    {% if transcriptPath %}
+    <div class="transcript-section">
+        <button class="transcript-toggle" onclick="toggleTranscript()">Show Transcript</button>
+        <div class="transcript-container" id="transcript-container" style="display: none;">
+            {{ transcriptPath | processTranscript | safe }}
+        </div>
+    </div>
+
+    <script>
+        function toggleTranscript() {
+            const container = document.getElementById('transcript-container');
+            const button = document.querySelector('.transcript-toggle');
+            
+            if (container.style.display === 'none') {
+                container.style.display = 'block';
+                button.textContent = 'Hide Transcript';
+            } else {
+                container.style.display = 'none';
+                button.textContent = 'Show Transcript';
+            }
+        }
+    </script>
+    {% endif %}
+
 </div>
