@@ -1,0 +1,30 @@
+{
+  "name": "zerobuild-zone",
+  "version": "1.0.0",
+  "description": "Zero Build Zone podcast website built with 11ty",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/eleventy --serve",
+    "build": "rm -rf _site/* && ./node_modules/.bin/eleventy"
+  },
+  "keywords": ["podcast", "11ty", "static-site", "zero-build-zone"],
+  "author": "Paulo Matos <pmatos@igalia.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.1",
+    "lodash.escape": "^4.0.1",
+    "mp3-duration": "^1.1.0",
+    "node-fetch": "^3.3.0",
+    "node-id3": "^0.2.5",
+    "rfc822-date": "^0.0.3",
+    "turndown": "^7.1.1",
+    "uuid": "^9.0.0",
+    "xml2json": "^0.12.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1395.0",
+    "dotenv": "^16.1.4",
+    "file-type": "^18.5.0"
+  }
+}

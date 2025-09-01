@@ -1,0 +1,18 @@
+{
+  "title": "Zero Build Zone",
+  "description": "A podcast exploring software development practices, build systems, and developer productivity.",
+  "category": "Technology",
+  "author": "Paulo Matos",
+  "owner": {
+    "name": "Paulo Matos",
+    "email": "pmatos@igalia.com"
+  },
+  "feedPath": "https://zerobuild.zone/feed.xml",
+  "episode": {
+    "defaultDescription": "The latest episode of Zero Build Zone."
+  },
+  "image": "https://zerobuild.zone/assets/cover.png",
+  "imageEmbed": "https://zerobuild.zone/assets/cover-small.png",
+  "url": "https://zerobuild.zone",
+  "keywords": "software development, build systems, developer productivity, programming"
+}
