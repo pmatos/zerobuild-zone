@@ -5,11 +5,12 @@
 		<meta charset="UTF-8" />
 
 		<meta name="viewport" content="width=device-width" />
-		<meta name="description" content="{% if episode.guid %}{{ episode.summary | safe }}{% else %}{{ podcast.description }}{% endif %}">
+		<meta name="description" content="{% if summary %}{{ summary | safe }}{% else %}{{ podcast.description }}{% endif %}">
 
-		<meta name="generator" content="{{ eleventy.generator }}">
 
-		<title>{% if episode.guid %}Zero Build Zone: {% endif %}{{ title }}{{ episode.title }}</title>
+		<title>{% if summary %}Zero Build Zone: {{ title }}{% else %}{{ title }}{% endif %}</title>
+
+		<link rel="canonical" href="{% if summary %}{{ podcast.url }}{{ page.url }}{% else %}{{ podcast.url }}/{% endif %}">
 
 		<link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
 
@@ -20,17 +21,143 @@
 
         <link rel="alternate" type="application/rss+xml" title="{{ podcast.title }} RSS Feed" href="{{ podcast.feedPath }}" />
 
-		<meta property="og:title" content="{% if episode.guid %}Zero Build Zone: {% endif %}{{ title }}{{ episode.title }}" />
-		<meta property="og:description" content="{% if episode.guid %}{{ episode.summary | safe }}{% else %}{{ podcast.description }}{% endif %}" />
+		<meta property="og:title" content="{% if summary %}Zero Build Zone: {{ title }}{% else %}{{ title }}{% endif %}" />
+		<meta property="og:description" content="{% if summary %}{{ summary | safe }}{% else %}{{ podcast.description }}{% endif %}" />
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://zerobuild.zone/" />
+		<meta property="og:url" content="{% if summary %}{{ podcast.url }}{{ page.url }}{% else %}{{ podcast.url }}/{% endif %}" />
         <meta property="og:image" content="https://zerobuild.zone/assets/img/zero-build-zone-logo.png">
 
-		<meta itemprop="name" content="{% if episode.guid %}Zero Build Zone: {% endif %}{{ title }}{{ episode.title }}">
-		<meta itemprop="description" content="{% if episode.guid %}{{ episode.summary | safe }}{% else %}{{ podcast.description }}{% endif %}">
+		<meta itemprop="name" content="{% if summary %}Zero Build Zone: {{ title }}{% else %}{{ title }}{% endif %}">
+		<meta itemprop="description" content="{% if summary %}{{ summary | safe }}{% else %}{{ podcast.description }}{% endif %}">
+
+		<!-- Twitter Cards -->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:site" content="@zerobuildzone">
+		<meta name="twitter:creator" content="@rapidraven880">
+		<meta name="twitter:title" content="{% if summary %}Zero Build Zone: {{ title }}{% else %}{{ title }}{% endif %}">
+		<meta name="twitter:description" content="{% if summary %}{{ summary | safe }}{% else %}{{ podcast.description }}{% endif %}">
+		<meta name="twitter:image" content="{{ podcast.image }}">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=atkinson-hyperlegible:400,400i,700,700i" rel="stylesheet" />
+		
+		<!-- Structured Data -->
+		<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@graph": [
+		    {
+		      "@type": "WebSite",
+		      "@id": "{{ podcast.url }}/#website",
+		      "url": "{{ podcast.url }}/",
+		      "name": "{{ podcast.title }}",
+		      "description": "{{ podcast.description }}",
+		      "potentialAction": [
+		        {
+		          "@type": "SearchAction",
+		          "target": {
+		            "@type": "EntryPoint",
+		            "urlTemplate": "{{ podcast.url }}/?s={search_term_string}"
+		          },
+		          "query-input": "required name=search_term_string"
+		        }
+		      ]
+		    },
+		    {
+		      "@type": "Organization",
+		      "@id": "{{ podcast.url }}/#organization",
+		      "name": "Zero Build Zone Podcast",
+		      "url": "{{ podcast.url }}/",
+		      "logo": {
+		        "@type": "ImageObject",
+		        "url": "{{ podcast.image }}",
+		        "width": 512,
+		        "height": 512
+		      },
+		      "founder": {
+		        "@type": "Person",
+		        "name": "{{ podcast.author }}",
+		        "url": "https://fortnitetracker.com/profile/all/RapidRaven880%20YT"
+		      },
+		      "sameAs": [
+		        "https://podcasts.apple.com/de/podcast/zero-build-zone/id1836629531",
+		        "https://open.spotify.com/show/0FeiXvpvohjxcl2NGdxYIO",
+		        "{{ podcast.feedPath }}"
+		      ]
+		    },
+		    {
+		      "@type": "PodcastSeries",
+		      "@id": "{{ podcast.url }}/#podcast",
+		      "name": "{{ podcast.title }}",
+		      "description": "{{ podcast.description }}",
+		      "url": "{{ podcast.url }}/",
+		      "image": "{{ podcast.image }}",
+		      "author": {
+		        "@type": "Person",
+		        "name": "{{ podcast.author }}",
+		        "url": "https://fortnitetracker.com/profile/all/RapidRaven880%20YT"
+		      },
+		      "publisher": {
+		        "@id": "{{ podcast.url }}/#organization"
+		      },
+		      "inLanguage": "{{ podcast.language }}",
+		      "genre": ["Video Games", "Gaming", "Fortnite"],
+		      "keywords": "{{ podcast.keywords }}",
+		      "webFeed": "{{ podcast.feedPath }}"
+		    }{% if summary %},
+		    {
+		      "@type": "PodcastEpisode",
+		      "@id": "{{ podcast.url }}{{ page.url }}#episode",
+		      "url": "{{ podcast.url }}{{ page.url }}",
+		      "name": "{{ title }}",
+		      "description": "{{ summary }}",
+		      "datePublished": "{{ published }}",
+		      "duration": "PT{{ duration | replace(':', 'M') | replace('M', 'H') }}S",
+		      "episodeNumber": {{ episodeNumber }},
+		      "partOfSeries": {
+		        "@id": "{{ podcast.url }}/#podcast"
+		      },
+		      "author": {
+		        "@type": "Person",
+		        "name": "{{ podcast.author }}",
+		        "url": "https://fortnitetracker.com/profile/all/RapidRaven880%20YT"
+		      },
+		      "publisher": {
+		        "@id": "{{ podcast.url }}/#organization"
+		      }{% if audioUrl %},
+		      "associatedMedia": {
+		        "@type": "MediaObject",
+		        "contentUrl": "{{ audioUrl }}",
+		        "encodingFormat": "audio/mpeg",
+		        "duration": "PT{{ duration | replace(':', 'M') | replace('M', 'H') }}S"
+		      }{% endif %}
+		    },
+		    {
+		      "@type": "BreadcrumbList",
+		      "itemListElement": [
+		        {
+		          "@type": "ListItem",
+		          "position": 1,
+		          "name": "Home",
+		          "item": "{{ podcast.url }}/"
+		        },
+		        {
+		          "@type": "ListItem",
+		          "position": 2,
+		          "name": "Episodes",
+		          "item": "{{ podcast.url }}/episodes/"
+		        },
+		        {
+		          "@type": "ListItem",
+		          "position": 3,
+		          "name": "{{ title }}",
+		          "item": "{{ podcast.url }}{{ page.url }}"
+		        }
+		      ]
+		    }{% endif %}
+		  ]
+		}
+		</script>
 	</head>
 	<body>
         <a style="display:none" rel="me" href="https://fortnitetracker.com/profile/all/RapidRaven880%20YT"></a>
@@ -39,7 +166,7 @@
             <div class="header__wrap">
                 <div class="header__main">
                     <div>
-                        <img class="cover" src="https://zerobuild.zone/assets/img/zero-build-zone-logo-small.png">
+                        <img class="cover" src="https://zerobuild.zone/assets/img/zero-build-zone-logo-small.png" alt="Zero Build Zone podcast logo - gaming podcast about Fortnite Zero Build mode">
                     </div>
                     <div class="header__info">
                         <h1><a href="/">{{ podcast.title }}</a></h1>

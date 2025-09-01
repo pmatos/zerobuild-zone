@@ -1,0 +1,49 @@
+---
+permalink: /sitemap.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
+  <url>
+    <loc>{{ podcast.url }}/</loc>
+    <lastmod>{{ collections.episodes[0].data.published | isoDate }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Episodes page -->
+  <url>
+    <loc>{{ podcast.url }}/episodes/</loc>
+    <lastmod>{{ collections.episodes[0].data.published | isoDate }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Episode pagination pages -->
+  {%- for pageNum in range(2, (collections.episodes.length / 10) | round + 1) %}
+  <url>
+    <loc>{{ podcast.url }}/episodes/page-{{ pageNum }}/</loc>
+    <lastmod>{{ collections.episodes[0].data.published | isoDate }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  {% endfor -%}
+  
+  <!-- Individual episodes -->
+  {%- for episode in collections.episodes %}
+  <url>
+    <loc>{{ podcast.url }}{{ episode.url }}</loc>
+    <lastmod>{{ episode.data.published | isoDate }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  {% endfor -%}
+  
+  <!-- RSS Feed -->
+  <url>
+    <loc>{{ podcast.url }}/feed.rss</loc>
+    <lastmod>{{ collections.episodes[0].data.published | isoDate }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>
