@@ -2,15 +2,26 @@
 permalink: "/feed.xml"
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" 
+    xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" 
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:podcast="https://podcastindex.org/namespace/1.0">
   <channel>
     <generator>Eleventy</generator>
     <title>{{ podcast.title }}</title>
     <description>{{ podcast.description }}</description>
-    <copyright>{{ podcast.author }}</copyright>
-    <language>en</language>
+    <copyright>&copy; 2025 {{ podcast.author }}</copyright>
+    <language>{{ podcast.language or 'en' }}</language>
     <pubDate>{{ collections.episodes | collectionLastUpdatedDate }}</pubDate>
     <lastBuildDate>{{ collections.episodes | collectionLastUpdatedDate }}</lastBuildDate>
+    <atom:link href="{{ podcast.feedPath }}" rel="self" type="application/rss+xml"/>
+    <webMaster>{{ podcast.webMaster }}</webMaster>
+    <managingEditor>{{ podcast.managingEditor }}</managingEditor>
+    <ttl>{{ podcast.ttl or '1440' }}</ttl>
+    <podcast:guid>{{ podcast.podcastGuid }}</podcast:guid>
+    <podcast:locked>{{ podcast.locked or 'yes' }}</podcast:locked>
     <image>
         <link>{{ podcast.url }}</link>
         <title>{{ podcast.title }}</title>
@@ -28,8 +39,11 @@ permalink: "/feed.xml"
         <itunes:name>{{ podcast.owner.name }}</itunes:name>
         <itunes:email>{{ podcast.owner.email }}</itunes:email>
     </itunes:owner>
-    <itunes:category text="{{ podcast.category }}"/>
+    <itunes:category text="Leisure">
+        <itunes:category text="Video Games"/>
+    </itunes:category>
     <itunes:applepodcastsverify>26f05c10-5044-11f0-b7ac-37b1c324c77d</itunes:applepodcastsverify>
+    <docs>https://www.rssboard.org/rss-specification</docs>
     {%- for episode in collections.episodes %}
         <item>
             <guid isPermaLink="false">{{ episode.data.guid }}</guid>
@@ -48,6 +62,10 @@ permalink: "/feed.xml"
             <itunes:explicit>no</itunes:explicit>
             <itunes:episodeType>full</itunes:episodeType>
             <itunes:episode>{{ episode.data.episodeNumber }}</itunes:episode>
+            {%- if episode.data.season %}<itunes:season>{{ episode.data.season }}</itunes:season>{% endif %}
+            {%- if episode.data.episodeImage %}<itunes:image href="{{ episode.data.episodeImage }}"/>{% endif %}
+            <podcast:episode>{{ episode.data.episodeNumber }}</podcast:episode>
+            {%- if episode.data.season %}<podcast:season>{{ episode.data.season }}</podcast:season>{% endif %}
         </item>
     {% endfor %}
   </channel>

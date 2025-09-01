@@ -1,6 +1,6 @@
 {
   "title": "Zero Build Zone",
-  "description": "A podcast exploring software development practices, build systems, and developer productivity.",
+  "description": "A Fortnite Zero Build podcast where RapidRaven and MatosPT discuss strategies, gameplay tips, and the evolving meta of Zero Build mode. Perfect for casual and competitive players looking to improve their game.",
   "category": "Video Games",
   "author": "RapidRaven880",
   "owner": {
@@ -14,5 +14,11 @@
   "image": "https://zerobuild.zone/assets/img/zero-build-zone-logo.png",
   "imageEmbed": "https://zerobuild.zone/assets/img/zero-build-zone-logo-small.png",
   "url": "https://zerobuild.zone",
-  "keywords": "software development, build systems, developer productivity, programming"
+  "keywords": "fortnite, zero build, gaming, battle royale, fortnite tips, gaming podcast, video games, fortnite strategies, zero build mode",
+  "language": "en",
+  "podcastGuid": "zerobuild-zone-2025",
+  "locked": "yes",
+  "webMaster": "rapidraven880@zerobuild.zone (RapidRaven880)",
+  "managingEditor": "rapidraven880@zerobuild.zone (RapidRaven880)",
+  "ttl": "1440"
 }
