@@ -41,7 +41,9 @@ layout: base
     }
 </script>
 
+{% if collections.episodes.length > 5 %}
 <div class="pagination">
     <div>Newer Episodes</div>
     <div><a href="/episodes/page-2">Older Episodes</a></div>
 </div>
+{% endif %}
