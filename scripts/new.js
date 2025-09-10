@@ -22,7 +22,15 @@ let duration = null
 
 await mp3Duration(filename, function (err, seconds) {
   if (err) return console.log(err.message)
-  duration = new Date(seconds * 1000).toISOString().slice(11, 19)
+  const hours = Math.floor(seconds / 3600)
+  const minutes = Math.floor((seconds % 3600) / 60)
+  const remainingSeconds = Math.floor(seconds % 60)
+  
+  if (hours > 0) {
+    duration = `${hours}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`
+  } else {
+    duration = `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
+  }
 })
 
 const pubDate = new Date().toUTCString().replace('GMT', '+0000')
@@ -48,7 +56,7 @@ fs.writeFile(`episodes/${paddedEpisodeNumber}.md`, content, function (err) {
 const BASE_HOSTNAME = 'storage.bunnycdn.com';
 const HOSTNAME = BASE_HOSTNAME;
 const STORAGE_ZONE_NAME = process.env.BUNNY_ZONE;
-const FILENAME_TO_UPLOAD = `podcasts/ruminate/episodes/${filename}`;
+const FILENAME_TO_UPLOAD = filename;
 const FILE_PATH = filename;
 const ACCESS_KEY = process.env.BUNNY_KEY;
 

@@ -42,8 +42,52 @@ The built site will be in the `_site` directory.
 
 ## 🎙️ Adding Episodes
 
-### Episode Information
-Create a new markdown file in the `episodes/` directory with the format `XXX.md` (e.g., `001.md`, `002.md`).
+### Automated Episode Creation (Recommended)
+
+Use the automated script to create episodes from MP3 files:
+
+```bash
+node scripts/new.js <episode-number>
+```
+
+**Prerequisites:**
+1. **Environment setup**: Create a `.env` file in the root directory with:
+   ```bash
+   BUNNY_ZONE=your-bunny-storage-zone-name
+   BUNNY_KEY=your-bunny-cdn-access-key
+   ```
+
+2. **MP3 file preparation**: 
+   - Name your MP3 file as `001.mp3`, `002.mp3`, etc. (padded with zeros)
+   - Add ID3 tags to your MP3:
+     - **Title**: Episode title (e.g., "Welcome to Zero Build Zone")
+     - **Comment**: Episode summary/description
+   - Place the MP3 file in the project root directory
+
+**Usage example:**
+```bash
+# For episode 3, ensure you have 003.mp3 in the root directory
+node scripts/new.js 3
+```
+
+**What the script does:**
+1. Reads MP3 metadata (title, summary) from ID3 tags
+2. Calculates file size and duration automatically
+3. Generates episode frontmatter with GUID and publish date
+4. Creates the episode markdown file in `episodes/`
+5. Uploads the MP3 file to your Bunny CDN storage
+6. Files are uploaded to the root of your CDN (matches current URL structure)
+
+**Dependencies:**
+The script requires these npm packages (already included in package.json):
+- `uuid` - for generating unique episode GUIDs
+- `mp3-duration` - for calculating MP3 duration
+- `node-id3` - for reading MP3 metadata
+- `dotenv` - for environment variable management
+
+### Manual Episode Creation
+
+If you prefer manual control, create a new markdown file in the `episodes/` directory with the format `XXX.md` (e.g., `001.md`, `002.md`).
 
 **Episode frontmatter format:**
 ```yaml
@@ -231,7 +275,17 @@ npm run build
 
 ## 📋 Episode Checklist
 
-When adding a new episode:
+### Using Automated Script (`scripts/new.js`)
+
+1. ✅ Prepare MP3 file with proper naming (`001.mp3`, `002.mp3`, etc.)
+2. ✅ Add ID3 tags (title and comment) to MP3 file
+3. ✅ Run `node scripts/new.js <episode-number>`
+4. ✅ Add episode content/show notes to generated markdown file
+5. ✅ Include transcript (optional)
+6. ✅ Test locally with `npm start`
+7. ✅ Push to main branch for deployment
+
+### Using Manual Process
 
 1. ✅ Upload MP3 to bunny.net
 2. ✅ Create episode markdown file in `episodes/`
