@@ -32,6 +32,6 @@
   "dependencies": {
     "aws-sdk": "^2.1395.0",
     "dotenv": "^17.2.3",
-    "file-type": "^21.1.0"
+    "file-type": "^21.1.1"
   }
 }
