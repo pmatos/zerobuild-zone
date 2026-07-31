@@ -13,8 +13,8 @@ updates:
     assignees:
       - "pmatos"
     commit-message:
-      prefix: "npm"
-      prefix-development: "npm-dev"
+      prefix: "chore"
+      prefix-development: "chore"
       include: "scope"
     # Group updates for better PR management
     groups:
